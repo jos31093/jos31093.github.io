@@ -1,0 +1,14 @@
+{
+  "name": "clienteservidor",
+  "version": "1.0.0",
+  "description": "cliente servidor",
+  "main": "prueba.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
