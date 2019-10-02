@@ -79,22 +79,30 @@ function generoDeBanda(banda){
         if(response.statusCode===200){
             const data=JSON.parse(body);                     
                 const genero=data.artists[0].strGenre;
-                console.log(genero);
+                console.log(`el genero musical de la banda ${banda} es ${genero}`);
         }
     });
 }
 
-generoDeBanda('kings of leon');
+//generoDeBanda('kings of leon');
 
 //peliculas por personaje
 
 function peliPorPersonaje(personaje){
     const URL=`https://swapi.co/api/people/${personaje}/`;
     request.get(URL, (error,response,body)=>{
-        console.log(response.statusCode)
         if(response.statusCode===200){
             const data=JSON.parse(body)
-            data.films.map((d)=>console.log(d));
+            console.log(`las peliculas en las que aparece ${data.name}`)
+            //data.films.map((d)=>console.log(d));
+            data.films.map((d)=>{
+                request.get(d, (error,response,body)=>{                    
+                    if(response.statusCode===200){
+                        const peli=JSON.parse(body);
+                        console.log(peli.title);
+                    }
+                })
+            });
         }
     });
 }
@@ -110,12 +118,10 @@ function asteroides(inicio, fin){
         console.log(URL)
         console.log(response.statusCode)
         if(response.statusCode===200){
-            const d = JSON.parse(body);
-            
-            console.log(d.near_earth_objects);
-            
+            const d = JSON.parse(body);            
+            //console.log(d.near_earth_objects);                
         }
     });
 }
 
-// asteroides('2019-09-15','2019-09-21');
+ asteroides('2019-09-15','2019-09-21');
